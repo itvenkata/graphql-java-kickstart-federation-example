@@ -1,0 +1,12 @@
+server:
+  port: 8081
+
+graphql:
+  graphiql:
+    mapping: /graphiql
+    basePath: /
+    enabled: true
+    pageTitle: GraphiQL
+    cdn:
+      enabled: true
+      version: latest

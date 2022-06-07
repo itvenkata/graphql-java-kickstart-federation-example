@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.7.0</version>
+    </parent>
+
+    <artifactId>shows</artifactId>
+
+    <name>shows</name>
+
+    <properties>
+        <graphql-java-kickstart.version>12.0.0</graphql-java-kickstart.version>
+        <federation-graphql-java-support.version>2.0.1</federation-graphql-java-support.version>
+        <!-- TEMP FIXME: downgrade graphql-java version that is from spring-boot-parent-starter -->
+        <graphql-java.version>17.3</graphql-java.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.apollographql.federation</groupId>
+            <artifactId>federation-graphql-java-support</artifactId>
+            <version>${federation-graphql-java-support.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.graphql-java-kickstart</groupId>
+            <artifactId>graphql-spring-boot-starter</artifactId>
+            <version>${graphql-java-kickstart.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+
+        <!-- testing facilities -->
+        <dependency>
+            <groupId>com.graphql-java-kickstart</groupId>
+            <artifactId>graphql-spring-boot-starter-test</artifactId>
+            <version>${graphql-java-kickstart.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+</project>
