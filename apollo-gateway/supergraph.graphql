@@ -1,0 +1,55 @@
+
+schema
+  @core(feature: "https://specs.apollo.dev/core/v0.2"),
+  @core(feature: "https://specs.apollo.dev/join/v0.1", for: EXECUTION)
+{
+  query: Query
+}
+
+directive @core(as: String, feature: String!, for: core__Purpose) repeatable on SCHEMA
+
+directive @join__field(graph: join__Graph, provides: join__FieldSet, requires: join__FieldSet) on FIELD_DEFINITION
+
+directive @join__graph(name: String!, url: String!) on ENUM_VALUE
+
+directive @join__owner(graph: join__Graph!) on INTERFACE | OBJECT
+
+directive @join__type(graph: join__Graph!, key: join__FieldSet) repeatable on INTERFACE | OBJECT
+
+type Query {
+  shows: [Show] @join__field(graph: SHOWS)
+}
+
+type Review {
+  starRating: Int
+}
+
+type Show
+  @join__owner(graph: SHOWS)
+  @join__type(graph: SHOWS, key: "id")
+  @join__type(graph: REVIEWS, key: "id")
+{
+  id: ID @join__field(graph: SHOWS)
+  releaseYear: Int @join__field(graph: SHOWS)
+  reviews: [Review] @join__field(graph: REVIEWS)
+  title: String @join__field(graph: SHOWS)
+}
+
+enum core__Purpose {
+  """
+  `EXECUTION` features provide metadata necessary to for operation execution.
+  """
+  EXECUTION
+
+  """
+  `SECURITY` features provide metadata necessary to securely resolve fields.
+  """
+  SECURITY
+}
+
+scalar join__FieldSet
+
+enum join__Graph {
+  REVIEWS @join__graph(name: "reviews" url: "http://localhost:8082/graphql")
+  SHOWS @join__graph(name: "shows" url: "http://localhost:8081/graphql")
+}

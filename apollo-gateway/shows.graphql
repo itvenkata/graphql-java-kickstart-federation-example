@@ -1,0 +1,13 @@
+schema {
+  query: Query
+}
+
+type Query {
+  shows: [Show]
+}
+
+type Show @key(fields : "id") {
+  id: ID
+  releaseYear: Int
+  title: String
+}

@@ -1,0 +1,14 @@
+schema {
+  query: Query
+}
+
+type Query
+
+type Review {
+  starRating: Int
+}
+
+type Show @extends @key(fields : "id") {
+  id: ID @external
+  reviews: [Review]
+}

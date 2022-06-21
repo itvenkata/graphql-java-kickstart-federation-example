@@ -1,0 +1,11 @@
+subgraphs: 
+  shows:
+    routing_url: http://localhost:8081/graphql
+    schema:
+      file: ./shows.graphql
+  reviews:
+     routing_url: http://localhost:8082/graphql
+     schema:
+      file: ./reviews.graphql
+
+  
